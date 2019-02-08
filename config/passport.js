@@ -6,12 +6,19 @@ const bcrypt = require('bcryptjs');
 const User = require('../models/User');
 const TechnicalUser=require('../models/TechnicalUser');
 
+function SessionConstructor(userId, userGroup, details) {
+  this.userId = userId;
+  this.userGroup = userGroup;
+  this.details = details;
+}
+
+
 // let istechnicalUser = (user)=>{
 //   TechnicalUser.findOne({email:user.email}, function(err, result) {
 //     if (err){throw err} 
 //     else{
 //       console.log(result.name);
-//       return true;
+//       return result;
 //     }
 //   });
 // }
@@ -21,7 +28,7 @@ const TechnicalUser=require('../models/TechnicalUser');
 //     if (err) throw err;
 //     else{
 //       console.log(result.name);
-//       return true;
+//       return result;
 //     }
 //   });
 // }
@@ -63,23 +70,39 @@ module.exports = function(passport) {
     })
   );
   passport.serializeUser(function(user, done) {
-      // if(istechnicalUser(user)){
-      //   done(null,tuser.id);
-      //   // return;
-      // }
-      // else if(isUser(user)){
-        done(null, user.id); 
-        // return;  
-      // } 
+    let userGroup = User;
+    let userPrototype = Object.getPrototypeOf(user);
+
+    if(userPrototype === User.prototype){
+      userGroup = "User";
+    }else if(userPrototype === TechnicalUser.prototype){
+      userGroup = "TechnicalUser";
+    }
+
+    let sessionConstructor = new SessionConstructor(user.id, userGroup, '');
+    done(null,sessionConstructor);
   });
 
-  passport.deserializeUser(function(id, done) {
-    User.findById(id, function(err, user) {
-    done(err, user);
+  passport.deserializeUser(function(sessionConstructor, done) {
+    // User.findById(id, function(err, user) {
+    // done(err, user);
+    // });
+    // TechnicalUser.findById(id,function(err,tuser){
+    //   done(err,tuser);
+    // });
+
+    if(sessionConstructor.userGroup == "User"){
+      User.findOne({
+        _id: sessionConstructor.userId
+    },function (err, user) { // When using string syntax, prefixing a path with - will flag that path as excluded.
+        done(err, user);
     });
-    TechnicalUser.findById(id,function(err,tuser){
-      done(err,tuser);
+    }else if(sessionConstructor.userGroup == 'TechnicalUser'){
+      TechnicalUser.findOne({
+        _id: sessionConstructor.userId
+    },function (err, user) { // When using string syntax, prefixing a path with - will flag that path as excluded.
+        done(err, user);
     });
+    }
   }); 
 };
-
