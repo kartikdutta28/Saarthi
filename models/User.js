@@ -19,4 +19,6 @@ const UserSchema = mongoose.Schema({
     default :Date.now
   }
 });
+
+//the model User is based on UserSchema
 const User = module.exports = mongoose.model('User',UserSchema);

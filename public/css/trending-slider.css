@@ -1,0 +1,86 @@
+.trending-slider {
+    font-family: Verdana, sans-serif;
+    margin-top: 10px;
+    box-sizing: border-box
+}
+
+.trending-slider .trending-slides {
+    display: none;
+}
+
+.trending-slider img {
+    vertical-align: middle;
+}
+
+/* Slideshow container */
+.trending-slider .slideshow-container {
+    max-width: 100%;
+    position: relative;
+    margin: auto;
+}
+
+/* Next & previous buttons */
+.trending-slider .slideshow-container .prev,
+.trending-slider .slideshow-container .next {
+    cursor: pointer;
+    position: absolute;
+    bottom: 2%;
+    right: 5%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: #000;
+    font-weight: bold;
+    font-size: 20px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+/* Position the "next button" to the right */
+.trending-slider .slideshow-container .next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.trending-slider .slideshow-container .prev:hover,
+.trending-slider .slideshow-container .next:hover {
+    /*background-color: rgba(0, 0, 0, 0.8);*/
+    color:#fff;
+}
+
+/*article bammer*/
+.article-banner {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    background-color: #046880;
+}
+
+/*article content*/
+.article-banner-content {
+    font-size: 20px;
+    padding: 10px;
+    font-weight: 700;
+    color: ghostwhite;
+    font-family: 'Playfair Display', serif;
+}
+
+/*article image*/
+.article-banner-img > img{
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+
+/* On smaller screens, decrease text size */
+
+@media only screen and (max-width: 300px) {
+
+    .trending-slider .slideshow-container .prev,
+    .trending-slider .slideshow-container .next,
+    .trending-slider .slideshow-container .text {
+        font-size: 11px
+    }
+}

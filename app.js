@@ -22,7 +22,7 @@ mongoose.connect(db,{useNewUrlParser:true})
     .catch(err=>console.log(err));
 
 //Set public folder for static files
-app.use(express.static(path.join(__dirname,'public')));
+app.use('/public', express.static(path.join(__dirname, '/public')));
 
 
 //PORT variable
@@ -47,6 +47,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+
 //Express messages middleware
 app.use(flash());
 
@@ -58,9 +59,16 @@ app.use((req,res,next) => {
     next();
 });
 
+app.get('*',(req,res,next)=>{
+    res.locals.user = req.user || null;
+    next();
+});
+
 //Routes
 app.use('/',require('./routes/index'));
 app.use('/users',require('./routes/users'));
+// app.use('/technical',require('./routes/technical'));
+// app.use('/admin',require('./routes/admin'));
 
 //Listen to port 5000
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));

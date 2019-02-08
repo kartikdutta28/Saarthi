@@ -12,6 +12,9 @@ router.get('/login',(req,res)=>res.render('login'));
 //Register Page
 router.get('/register',(req,res)=>res.render('register'));
 
+//Welcome Page
+router.get('/welcome',(req,res)=>res.render('welcome'));
+
 
 //Register Handle
 router.post('/register', (req, res) => {
@@ -66,7 +69,7 @@ router.post('/register', (req, res) => {
                         //Save the User
                         newUser.save()
                             .then(user=>{
-                                req.flash('sucess_msg','You are now registered');
+                                req.flash('success_msg','You are now registered');
                                 res.redirect('/users/login');
                             })
                             .catch(err => console.log(err));
@@ -81,7 +84,7 @@ router.post('/register', (req, res) => {
 //Login Handle
 router.post('/login', (req, res, next) => {
     passport.authenticate('local', {
-      successRedirect: '/dashboard',
+      successRedirect: '/users/welcome',
       failureRedirect: '/users/login',
       failureFlash: true
     })(req, res, next);
