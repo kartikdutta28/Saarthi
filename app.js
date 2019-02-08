@@ -67,6 +67,7 @@ app.get('*',(req,res,next)=>{
 //Routes
 app.use('/',require('./routes/index'));
 app.use('/users',require('./routes/users'));
+app.use('/technicalUsers',require('./routes/technicalUsers'));
 // app.use('/technical',require('./routes/technical'));
 // app.use('/admin',require('./routes/admin'));
 
