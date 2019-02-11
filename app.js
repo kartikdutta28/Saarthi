@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const multer = require('multer');
 const bodyParser = require('body-parser');
 const path = require('path');
 const mongoose = require('mongoose');

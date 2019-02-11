@@ -12,12 +12,17 @@
  
     <ul class="list-group">
         <% for(let article of articles) {%>
+<<<<<<< HEAD
             <li class="list-group-item"><a href="/technicalUsers/technicalindex/<%= article._id %>" ><%= article.title%></a></li>
+=======
+            <li class="list-group-item"><a href="/technicalUsers/technicalindex/articles/<%= article._id %>" ><%= article.title%></a></li>
+>>>>>>> f5caf8a0e31cfc68f9b4556bb31054d3cf560d70
         <% } %>
     </ul>
 
     <p>
-    <a href="/technicalUsers/technicalindex/add_articles">Add articles</a>
+    <a href="/technicalUsers/technicalindex/add_articles">Add articles</a><br>
+    <a href="/technicalUsers/technicalindex/add_pictures">Add Pictures</a>
     </p>
 </body>
 </html>
