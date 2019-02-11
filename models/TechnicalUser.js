@@ -14,6 +14,10 @@ const technicalUserSchema = mongoose.Schema({
     type: String,
     required: true
   },
+  articles_written:[{
+    type: mongoose.Schema.Types.ObjectId,
+    // ref: 'articles'
+  }],
   date:{
     type: Date,
     default :Date.now

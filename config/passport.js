@@ -12,27 +12,6 @@ function SessionConstructor(userId, userGroup, details) {
   this.details = details;
 }
 
-
-// let istechnicalUser = (user)=>{
-//   TechnicalUser.findOne({email:user.email}, function(err, result) {
-//     if (err){throw err} 
-//     else{
-//       console.log(result.name);
-//       return result;
-//     }
-//   });
-// }
-
-// let isUser = (user)=>{
-//   User.findOne({email:user.email}, function(err, result) {
-//     if (err) throw err;
-//     else{
-//       console.log(result.name);
-//       return result;
-//     }
-//   });
-// }
-
 module.exports = function(passport) {
   passport.use('user-local',
     new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
@@ -58,11 +37,22 @@ module.exports = function(passport) {
 
   );
   passport.use('technical-local',new LocalStrategy({usernameField:'email'},(email,password,done)=>{
+      // console.log(email);
       TechnicalUser.findOne({
-        email:email
+        email: email
       }).then(tuser=>{
         if(!tuser){
+<<<<<<< HEAD
           return done(null,false,{message:'That email is not registered sorry'});
+=======
+          return done(null,false,{message:'That email is not registered'});
+<<<<<<< HEAD
+        }else if(tuser){
+          return done(null,tuser);
+        }
+      });
+=======
+>>>>>>> 6e66dab2192f5a261bfea585c2a78e6c17767fe3
         }bcrypt.compare(password, tuser.password, (err, isMatch) => {
           if (err) throw err;
           if (isMatch) {
@@ -73,6 +63,7 @@ module.exports = function(passport) {
         });
 
         });
+>>>>>>> 442028abf753b9c2aa06a70a48f8802d9159c203
     })
   );
   passport.serializeUser(function(user, done) {
@@ -100,13 +91,13 @@ module.exports = function(passport) {
     if(sessionConstructor.userGroup == "User"){
       User.findOne({
         _id: sessionConstructor.userId
-    },function (err, user) { // When using string syntax, prefixing a path with - will flag that path as excluded.
+    },function (err, user) { 
         done(err, user);
     });
     }else if(sessionConstructor.userGroup == 'TechnicalUser'){
       TechnicalUser.findOne({
         _id: sessionConstructor.userId
-    },function (err, user) { // When using string syntax, prefixing a path with - will flag that path as excluded.
+    },function (err, user) { 
         done(err, user);
     });
     }
