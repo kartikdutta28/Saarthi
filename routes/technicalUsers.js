@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt  = require('bcryptjs');
+const {ensureAuthenticated}=require('../config/auth');
 const passport = require('passport');
 
 router.get('/login',(req,res)=>res.render('technicalLogin'));
-router.get('/form',(req,res)=>res.render('form'));
+router.get('/form',ensureAuthenticated,(req,res)=>res.render('form'));
 
 router.post('/login',(req,res,next)=>{
     passport.authenticate('technical-local',{

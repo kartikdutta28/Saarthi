@@ -17,7 +17,7 @@ TechnicalUser.remove({})
         return TechnicalUser.create(technicalUser);
     })
     .then(()=>{
-        process.exit();
+        process.exit(); 
     })
     .catch((e)=>{
         console.log(e);

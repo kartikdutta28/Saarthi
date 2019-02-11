@@ -62,7 +62,7 @@ module.exports = function(passport) {
         email:email
       }).then(tuser=>{
         if(!tuser){
-          return done(null,false,{message:'That email is not registered'});
+          return done(null,false,{message:'That email is not registered sorry'});
         }bcrypt.compare(password, tuser.password, (err, isMatch) => {
           if (err) throw err;
           if (isMatch) {

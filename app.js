@@ -4,7 +4,6 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const mongoose = require('mongoose');
 const config = require('./config/keys');
-//const expressValidator = require('express-validator');
 const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
@@ -43,7 +42,7 @@ app.use(session({
     saveUninitialized: true,
   }));
 
-//passport middleware
+//Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
 
