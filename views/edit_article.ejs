@@ -1,0 +1,22 @@
+<h1><%= title%></h1>
+<form method="POST" action="/technicalUsers/technicalindex/edit/<%= article._id%>">
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="title">Title</label>
+        <input type="text" class="form-control" name="title" id="title" value="<%= article.title %>">
+    </div>
+
+    <div class="form-group">
+        <label for="category">Category</label>
+        <input type="text" class="form-control" name="category" id="category" value="<%= article.Category %>">
+    </div>
+    <div class="form-group">
+        <label for="author">Author</label>
+        <input type="text" class="form-control" name="author" id="author" value="<%= article.Author %>">
+    </div>
+    <div class="form-group">
+        <label for="body">Body</label>
+        <textarea class="form-control" name="body" id="body" cols="30" rows="10" value="<%= article.Body %>"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

@@ -24,6 +24,82 @@ router.get('/technicalindex',ensureAuthenticated,(req,res)=>{
     });
 });
 
+
+//get single article
+router.get('/technicalindex/:id', (req, res) => {
+    Article.findById(req.params.id, (err, article) => {
+        if (err) {
+            console.log(err);
+            return;
+        } else {
+            res.render('article', {
+                title: 'articles',
+                article: article
+            })
+        }
+    });
+});
+
+
+//edit article
+router.get('/technicalindex/edit/:id', (req, res) => {
+    Article.findById(req.params.id, (err, article) => {
+        if (err) {
+            console.log(err);
+            return;
+        } else {
+            res.render('edit_article', {
+                title: 'Edit article',
+                article: article
+            })
+        }
+    });
+});
+
+
+//update post route
+router.post('/technicalindex/edit/:id', (req, res) => {
+    let article = {};
+    article.title = req.body.title;
+    article.Category = req.body.category;
+    article.Author = req.body.author;
+    article.Body = req.body.body;
+
+    let query = {
+        _id: req.params.id
+    };
+    Article.updateOne(query, article, (err) => {
+        if (err) {
+            console.log(err);
+            return;
+        } else {
+            req.flash('success', 'article updated');
+            res.redirect('/technicalUsers/technicalindex');
+        }
+    })
+});
+
+
+//delete an article
+router.get('/technicalindex/delete/:id', (req, res) => {
+    let query = {
+        _id: req.params.id
+    }
+
+    Article.remove(query, (err) => {
+        if (err) {
+            console.log(err);
+
+        }else{
+            res.redirect('/technicalUsers/technicalindex');
+        // res.send('success');
+        }
+        
+    })
+});
+
+
+
 router.get('/technicalindex/add_articles',(req,res)=>{
        
     res.render('add_articles', {
@@ -40,6 +116,7 @@ router.post('/technicalindex/add_articles', (req, res) => {
     let article = new Article();
     article.title = req.body.title;
     article.Author = req.body.author;
+    article.steptitiles = req.body.steptitle;
     article.Category = req.body.category;
     article.Body = req.body.step;
     // articlesteps = article.steps;
@@ -53,7 +130,6 @@ router.post('/technicalindex/add_articles', (req, res) => {
         }
     })
 
-    // console.log('articlesteps'+articlesteps);
 });
 
 router.post('/login',(req,res,next)=>{

@@ -61,15 +61,15 @@
                     <i class="fa fa-search"></i>
                 </button>
             </div>
-            <a href="#1" target="_blank"><i class="fas fa-globe"></i> Explore</a>
-            <a href="#2" target="_blank"><i class="fas fa-users"></i> AboutUs</a>
+            <a href="#1"><i class="fas fa-globe"></i> Explore</a>
+            <a href="#2"><i class="fas fa-users"></i> AboutUs</a>
             <% if(!user){ %>
                 <a href="/users/login"><i class="far fa-address-book"></i> Login</a>
                 <a href="/users/register"><i class="far fa-address-card"></i> SignUp</a>
              <%  } %> 
             <% if(user){ %>
-                <a href="#6" target="_blank"><i class="fas fa-user-alt"></i> My Profile</a>
-                <a href="/users/logout" target="_blank"><i class="fas fa-door-open"></i> LogOut</a>
+                <a href="#6"><i class="fas fa-user-alt"></i> My Profile</a>
+                <a href="/users/logout"><i class="fas fa-door-open"></i> LogOut</a>
             <%  } %>   
         </div>
     </div>

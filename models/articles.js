@@ -27,6 +27,10 @@ const ArticleSchema = mongoose.Schema({
       type: [String],
       required: true
   },
+  steptitiles:{
+    type: [String],
+    required: true
+  },
   Created:{
      type: Date,
      default: Date.now
