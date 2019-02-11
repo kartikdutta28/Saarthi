@@ -42,17 +42,9 @@ module.exports = function(passport) {
         email: email
       }).then(tuser=>{
         if(!tuser){
-<<<<<<< HEAD
+
           return done(null,false,{message:'That email is not registered sorry'});
-=======
           return done(null,false,{message:'That email is not registered'});
-<<<<<<< HEAD
-        }else if(tuser){
-          return done(null,tuser);
-        }
-      });
-=======
->>>>>>> 6e66dab2192f5a261bfea585c2a78e6c17767fe3
         }bcrypt.compare(password, tuser.password, (err, isMatch) => {
           if (err) throw err;
           if (isMatch) {
@@ -63,7 +55,6 @@ module.exports = function(passport) {
         });
 
         });
->>>>>>> 442028abf753b9c2aa06a70a48f8802d9159c203
     })
   );
   passport.serializeUser(function(user, done) {

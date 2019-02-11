@@ -1,11 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt  = require('bcryptjs');
-<<<<<<< HEAD
-const {ensureAuthenticated}=require('../config/auth');
-=======
 const {ensureAuthenticated}=require('../config/auth')
->>>>>>> 6e66dab2192f5a261bfea585c2a78e6c17767fe3
 const passport = require('passport');
 
 //artcle model
@@ -13,9 +9,6 @@ let Article = require('../models/articles');
 let TechnicalUser = require('../models/TechnicalUser');
 
 router.get('/login',(req,res)=>res.render('technicalLogin'));
-<<<<<<< HEAD
-router.get('/form',ensureAuthenticated,(req,res)=>res.render('form'));
-=======
 
 router.get('/technicalindex',ensureAuthenticated,(req,res)=>{
     Article.find({},(err,articles)=>{
@@ -62,7 +55,6 @@ router.post('/technicalindex/add_articles', (req, res) => {
 
     // console.log('articlesteps'+articlesteps);
 });
->>>>>>> 6e66dab2192f5a261bfea585c2a78e6c17767fe3
 
 router.post('/login',(req,res,next)=>{
     passport.authenticate('technical-local',{
