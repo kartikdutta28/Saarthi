@@ -6,12 +6,13 @@ const passport = require('passport');
 const multer = require('multer');
 const path = require('path');
 
-//Article model
+//artcle model
 let Article = require('../models/articles');
 let TechnicalUser = require('../models/TechnicalUser');
 
 router.get('/login',(req,res)=>res.render('technicalLogin'));
 
+//technical usrs's homepage
 router.get('/technicalindex',ensureAuthenticated,(req,res)=>{
     Article.find({},(err,articles)=>{
         if(err){
@@ -27,20 +28,7 @@ router.get('/technicalindex',ensureAuthenticated,(req,res)=>{
 });
 
 
-//get single article
-router.get('/technicalindex/:id', (req, res) => {
-    Article.findById(req.params.id, (err, article) => {
-        if (err) {
-            console.log(err);
-            return;
-        } else {
-            res.render('article', {
-                title: 'articles',
-                article: article
-            })
-        }
-    });
-});
+
 
 
 //edit article
@@ -102,17 +90,12 @@ router.get('/technicalindex/delete/:id', (req, res) => {
 
 
 
-router.get('/technicalindex/add_articles',(req,res)=>{
-       
+router.get('/technicalindex/add_articles',(req,res)=>{   
     res.render('add_articles', {
         title: 'Add Article'
-
     });
 });
 
-router.get('/technicalindex/add_pictures',(req,res)=>{
-    res.render('upload_pictures');
-});
 
 // add post route
 router.post('/technicalindex/add_articles', (req, res) => {
@@ -156,6 +139,25 @@ router.get('/logout', (req, res) => {
 
 
 
+router.get('/technicalindex/add_pictures',(req,res)=>{
+    res.render('upload_pictures');
+});
+
+//get single article
+router.get('/technicalindex/:id', (req, res) => {
+    Article.findById(req.params.id, (err, article) => {
+        if (err) {
+            console.log(err);
+            return;
+        } else {
+            res.render('article', {
+                title: 'articles',
+                article: article
+            })
+        }
+    });
+});
+
 
 //Multer stuff
 const storage = multer.diskStorage({
@@ -188,7 +190,7 @@ function checkFileType(file, cb){
     }
 }
 router.post('/technicalindex/add_pictures', (req, res) => {
-    upload(req, res, (err) => {
+    upload(req, res, (err) => {  
       if(err){
         res.render('upload_pictures', {
           msg: err
