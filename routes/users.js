@@ -15,7 +15,6 @@ router.get('/register',(req,res)=>res.render('register'));
 //Welcome Page
 router.get('/welcome',(req,res)=>res.render('welcome'));
 
-
 //Register Handle
 router.post('/register', (req, res) => {
     const { name, email, password, password2 } = req.body;
@@ -80,7 +79,6 @@ router.post('/register', (req, res) => {
 
   }
 });
-
 //Login Handle
 router.post('/login', (req, res, next) => {
     passport.authenticate('user-local', {
@@ -89,7 +87,6 @@ router.post('/login', (req, res, next) => {
       failureFlash: true
     })(req, res, next);
 });
-
 // Logout
 router.get('/logout', (req, res) => {
     req.logout();

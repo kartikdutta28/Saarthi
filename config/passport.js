@@ -43,10 +43,23 @@ module.exports = function(passport) {
       }).then(tuser=>{
         if(!tuser){
           return done(null,false,{message:'That email is not registered'});
+<<<<<<< HEAD
         }else if(tuser){
           return done(null,tuser);
         }
       });
+=======
+        }bcrypt.compare(password, tuser.password, (err, isMatch) => {
+          if (err) throw err;
+          if (isMatch) {
+            return done(null, tuser);
+          } else {
+            return done(null, false, { message: 'Password incorrect' });
+          }
+        });
+
+        });
+>>>>>>> 442028abf753b9c2aa06a70a48f8802d9159c203
     })
   );
   passport.serializeUser(function(user, done) {
