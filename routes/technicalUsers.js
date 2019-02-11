@@ -5,9 +5,8 @@ const {ensureAuthenticated}=require('../config/auth')
 const passport = require('passport');
 const multer = require('multer');
 const path = require('path');
-const crypto = require('crypto');
 
-//artcle model
+//Article model
 let Article = require('../models/articles');
 let TechnicalUser = require('../models/TechnicalUser');
 
@@ -78,6 +77,11 @@ router.get('/logout', (req, res) => {
 
 
 
+
+
+
+
+//Multer stuff
 const storage = multer.diskStorage({
     destination: './public/uploads/',
     filename: function(req, file, cb){
