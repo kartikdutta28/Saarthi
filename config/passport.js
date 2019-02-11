@@ -44,17 +44,10 @@ module.exports = function(passport) {
         if(!tuser){
 
           return done(null,false,{message:'That email is not registered sorry'});
-          return done(null,false,{message:'That email is not registered'});
-        }bcrypt.compare(password, tuser.password, (err, isMatch) => {
-          if (err) throw err;
-          if (isMatch) {
-            return done(null, tuser);
-          } else {
-            return done(null, false, { message: 'Password incorrect' });
-          }
-        });
-
-        });
+        }else if(tuser){
+          return done(null,tuser);
+        }
+      });
     })
   );
   passport.serializeUser(function(user, done) {
