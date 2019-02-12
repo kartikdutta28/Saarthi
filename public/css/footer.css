@@ -1,6 +1,7 @@
 #footer{
+    max-width: 100%;
     background-color: #046880;
-    padding: 0px 30px;
+    padding: 0px 20px;
 }
 
 #footer .footer-container{

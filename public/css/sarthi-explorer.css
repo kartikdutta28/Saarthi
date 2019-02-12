@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400i,900");
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400i,900|Roboto");
 
 *,
 *::before,
@@ -6,15 +6,20 @@
     box-sizing: border-box;
     margin: 0px;
     padding: 0px;
-    
+
 }
 
-body{
-    background-color: #d60638;
+body {
+    background-color:#fff;
+}
+
+.clearfix {
+    content: " ";
+    clear: both;
 }
 
 #explorer-layout {
-    font-family: "Raleway", sans-serif;
+    font-family: "Roboto", sans-serif;
     font-weight: 300;
     line-height: 1.6;
     max-width: 98%;
@@ -22,82 +27,134 @@ body{
     margin: 20px;
 }
 
-#category-section{
-    background-color: black;
+#category-section {
+    background-color:#cbdfe2;
+    margin: 10px 0px;
 }
 
-#category-section .section-heading{
+#trending-section {
+    background-color:#cbdfe2;
+    margin: 10px 0px;
+}
+
+#fresh-section {
+    background-color:#cbdfe2;
+    margin: 10px 0px;
+}
+
+#request-section {
+    width: 45%;
+    background-color:#cbdfe2;
+    margin: 10px 0px;
+    float: left;
+    overflow: auto;
+}
+
+#donate-section {
+    width: 45%;
+    background-color:#cbdfe2;
+    margin: 10px 0px;
+    float: right;
+    overflow: auto;
+}
+
+/*for setting the width of slider in explorer page*/
+.slider-wrapper {
+    max-width: 80%;
+    margin: auto;
+}
+
+/******/
+
+
+/*for heading of each sectiom*/
+.section-heading1 {
     font-size: 1.5rem !important;
     line-height: 2.25rem !important;
     letter-spacing: .6em;
     font-weight: 600;
-    font-family:roboto;
-    border-bottom: 4px solid #d60638;
-    color: white;
+    font-family: "Raleway", sans-serif;
+    border-bottom: 4px solid #fff;
+    color:#000;
     text-align: center;
     text-transform: uppercase;
     margin-bottom: 10px;
 }
 
-#category-section .category-list {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: .5em;
-    
-}
-
-#category-section .category-list .category {
-    margin: 0;
-    padding: 0;
-    position: relative;
-}
-
-#category-section .category-list .category img {
+.section-subheading 
+{
+    font-family: "Roboto", sans-serif;
+    font-size: 1rem !important;
+    font-weight: 100;
+    line-height: .9em;
     display: block;
+    letter-spacing: normal;
+    margin-top: 5px;
+}
+/******************/
+.donate-container{
+    width: 210px;
     max-width: 100%;
-    height: auto;
-}
+    display: block;
+    margin: auto;
 
-.category-list .category .img-caption {
-    position: absolute;
-    top: .5em;
-    bottom: .5em;
-    right: .5em;
-    left: .5em;
-    margin: 5px;
-    background: rgba(0, 0, 0, 0.7);
-    color: #0b2027;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity ease-in-out 300ms;
 }
-
-.category-list .category:hover .img-caption {
-    opacity: 1;
-}
-
-.category-list .category .img-caption a {
-    padding: 5px;
-    border-radius: 30px;
+.donate-container .donate-logo{
+    padding: 20px 25px;
+    display: inline;
+    background-color: rgb(8, 8, 8);
+    color: rgb(255, 255, 255);
     cursor: pointer;
-    border: 1px #d60638 solid;
-    font-weight: 600;
-    text-align: center;
-    background-color: #d60638;
+}
+.donate-container .donate-button{
+    display: inline-block;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    margin: auto;
+    margin-bottom: 10px;
+    border: none;
+    background-color:#046880;
+    padding: 20px 25px;
     color: #fff;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 500;
+    text-transform: uppercase;
+    -webkit-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+    -webkit-perspective: 100px;
+    perspective: 100px;
+    overflow: hidden;
+    z-index: 2;
 }
 
-@media(min-width: 900px) {
-#category-section .category-list {
-        grid-template-columns: repeat(auto-fit, minmax(15em, 1fr));
-    }
+.donate-container .donate-button:hover{
+    background-color: #fff;
+    border: 2px solid #046880;
+    color:#046880;
 }
+
+.donate-container .donate-button:focus{
+    border:none;
+}
+
+
+/***below css form grid layout present in category section trending section freh section***/
+/*moved to grid list .css*/
+/********/
 
 @media screen and (max-width:900px) {
-    .category-list .category .img-caption a {
-        padding: 2px;
-        font-size: 10px;
+    #request-section{
+        width:100%; 
+        float: none;  
+    }
+    #donate-section{
+        width:100%; 
+        float: none;  
+    }
+
+    .slider-wrapper {
+        max-width: 100%;
+        margin: 5px;
     }
 }

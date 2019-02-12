@@ -20,3 +20,4 @@ function show_T_Slides(n) {
     slides[slide_T_Index - 1].style.display = "block";
 }
 setInterval(function(){show_T_Slides(slide_T_Index += 1);}, 6000);
+

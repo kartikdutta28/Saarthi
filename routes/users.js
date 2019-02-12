@@ -2,9 +2,12 @@ const express = require('express');
 const router = express.Router();
 const bcrypt  = require('bcryptjs');
 const passport = require('passport');
+const article = require('../models/articles');
+const Request = require('../models/Request');
 
 //User model
 const User = require('../models/User');
+const TechnicalUser = require('../models/TechnicalUser');
 
 //Login Page
 router.get('/login',(req,res)=>res.render('login'));
@@ -15,7 +18,40 @@ router.get('/register',(req,res)=>res.render('register'));
 //Welcome Page
 router.get('/welcome',(req,res)=>res.render('welcome'));
 
-//Register Handle
+
+
+router.get('/user_profile',(req,res)=>{
+  res.render('user_profile');     
+});
+
+//user single article
+// router.get('/explore/:id', (req, res) => {
+//   Article.findById(req.params.id, (err, article) => {
+//       if (err) {
+//           console.log(err);
+//           return;
+//       } else {
+//           res.render('user_article', {
+//               article: article
+//           })
+//       }
+//   });
+// });
+router.get('/explore/:id', (req, res) => {
+  Article.findById(req.params._id, function(err, article){
+    TechnicalUser.findById(article.Author,function(err,tuser){
+      console.log("Found");
+      res.render('user_article',{
+        article:article,
+        tuser:tuser      
+      });
+    })
+  });
+});
+
+
+//Register Hand
+
 router.post('/register', (req, res) => {
     const { name, email, password, password2 } = req.body;
     let errors = [];
@@ -92,5 +128,16 @@ router.get('/logout', (req, res) => {
     req.logout();
     req.flash('success_msg', 'You are logged out');
     res.redirect('/users/welcome');
+});
+router.get('/welcome/explore',(req,res)=>{
+  article.find({},(err,articles)=>{
+    if(err){
+      console.log(err);
+    }else{
+      res.render('explore',{
+        articles : articles
+      })
+    }
+  })
 });
 module.exports = router;

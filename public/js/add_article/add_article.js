@@ -7,9 +7,11 @@ $(document).ready(() => {
 
     $('.add').click(function() {
         $('.block:last').before(`<div class="block">
-        <label class="control-label col-sm-2" for="steptitle">Step Title</label>
-        <input type="text" class="form-control" name="steptitle" id="steptitle">
-        <textarea class="form-control" name="step"  cols="5" rows="3"></textarea><span class="remove">Delete Step</span>
+        <label for="steptitle">Step Title</label>
+        <input type="text" name="steptitle" class="input-item" id="steptitle">
+
+        <label for="step">Step Description</label>
+        <textarea name="step" id="" cols="30" rows="10" class="input-item" id="step"></textarea><span class="secondary-btn remove">Remove Step</span>
     </div>`);
     });
     $('.optionBox').on('click','.remove',function() {

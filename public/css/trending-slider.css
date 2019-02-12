@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Serif+SC:500');
 .trending-slider {
     font-family: Verdana, sans-serif;
     margin-top: 10px;
@@ -55,15 +56,39 @@
     display: grid;
     grid-template-columns: 1fr 2fr;
     background-color: #046880;
+    margin-bottom: 10px;
+}
+
+.article-banner a{
+    color: white;
 }
 
 /*article content*/
-.article-banner-content {
-    font-size: 20px;
-    padding: 10px;
-    font-weight: 700;
+.article-banner-content h3{
+    font-size: 2.1em !important;
+    border-bottom: 2px solid #fff;
+    line-height: 1.15385;
+    margin-top: 0;
+    margin-bottom: .5rem;
+    font-family: 'Noto Serif SC', serif;
+    font-weight:bold;
+    font-style: normal;
+    text-transform: uppercase;
+    color: white;
+    text-rendering: optimizeLegibility;
+}
+.article-banner-content p{
+    padding: 5px;
     color: ghostwhite;
-    font-family: 'Playfair Display', serif;
+    font-family:europa;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 1.4em;
+    letter-spacing: 0em;
+    line-height: 1.15385em;
+    text-decoration: none;
+    text-transform: none;
+    text-rendering: optimizeLegibility;
 }
 
 /*article image*/
@@ -76,11 +101,38 @@
 
 /* On smaller screens, decrease text size */
 
-@media only screen and (max-width: 300px) {
+@media only screen and (max-width: 500px) {
 
     .trending-slider .slideshow-container .prev,
     .trending-slider .slideshow-container .next,
     .trending-slider .slideshow-container .text {
-        font-size: 11px
+        font-size: 18px
+    }
+
+    .article-banner-content h3{
+        font-size: 1.1em !important;
+        border-bottom: 1px solid #fff;
+        line-height: 1.15385;
+        margin-top: 0;
+        margin-bottom: .5rem;
+        font-family: 'Noto Serif SC', serif;
+        font-weight: normal;
+        font-style: normal;
+        text-transform: uppercase;
+        color: white;
+        text-rendering: optimizeLegibility;
+    }
+    .article-banner-content p{
+        padding: 2px;
+        color: ghostwhite;
+        font-family:europa;
+        font-weight: normal;
+        font-style: normal;
+        font-size: 1em;
+        letter-spacing: 0em;
+        line-height: 1.15385em;
+        text-decoration: none;
+        text-transform: none;
+        text-rendering: optimizeLegibility;
     }
 }

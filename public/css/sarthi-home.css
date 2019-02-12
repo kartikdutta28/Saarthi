@@ -136,6 +136,7 @@
     }
 
     #category-list .category .img-caption a{
-        font-size:11px;
+        padding: 1px;
+        font-size:10px;
     }
 }
