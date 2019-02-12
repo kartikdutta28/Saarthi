@@ -6,6 +6,8 @@ const passport = require('passport');
 const multer = require('multer');
 const path = require('path');
 
+
+
 //artcle model
 let Article = require('../models/articles');
 let TechnicalUser = require('../models/TechnicalUser');
@@ -21,7 +23,8 @@ router.get('/technicalindex',ensureAuthenticated,(req,res)=>{
         }else{
             res.render('technicalindex',{
                 title: 'Articles',
-                articles: articles
+                articles: articles,
+                TechnicalUser: TechnicalUser
             });
         }
     });
@@ -92,18 +95,34 @@ router.get('/technicalindex/add_articles',(req,res)=>{
     });
 });
 
-
+let authorname;
 // add post route
 router.post('/technicalindex/add_articles', (req, res) => {
     // res.send('OK');
     // console.log('inside post route');
     let article = new Article();
     article.title = req.body.title;
-    article.Author = req.body.author;
+    //get author id
+    let authorid = req.body.author;
+    // get author name
+    TechnicalUser.findById({_id:authorid},(err,author)=>{
+        if(err){
+            console.log(err);
+        }else{
+            authorname = author.name; 
+            console.log(authorname);
+        }
+    });
+    console.log('aurthorname: '+authorname);
+    // authorname = authorname.toString();
+    article.Author = authorname;
+    console.log('name: '+article.Author);
+    // article.Author = authorname.toString();
+    // eval(require('locus'));
     article.steptitiles = req.body.steptitle;
     article.Category = req.body.category;
     article.Body = req.body.step;
-    // articlesteps = article.steps;
+    
     
     article.save((err) => {
         if (err) {
@@ -112,9 +131,9 @@ router.post('/technicalindex/add_articles', (req, res) => {
         } else {
             res.redirect('/technicalUsers/technicalindex');
         }
-    })
-
+    })  
 });
+
 
 router.post('/login',(req,res,next)=>{
     passport.authenticate('technical-local',{
