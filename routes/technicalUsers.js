@@ -27,10 +27,6 @@ router.get('/technicalindex',ensureAuthenticated,(req,res)=>{
     });
 });
 
-
-
-
-
 //edit article
 router.get('/technicalindex/edit/:id', (req, res) => {
     Article.findById(req.params.id, (err, article) => {
@@ -133,10 +129,6 @@ router.get('/logout', (req, res) => {
     req.flash('success_msg', 'You are logged out');
     res.redirect('/technicalUsers/login');
 });
-
-
-
-
 
 
 router.get('/technicalindex/add_pictures',(req,res)=>{
