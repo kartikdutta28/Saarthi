@@ -169,7 +169,7 @@ h6 {
 
 /* Button */
 .primary-btn {
-    padding: 0.7rem 1rem;
+    padding: 0.7rem 0.5rem;
     height: 2.7rem;
     display: block;
     border: 0;
@@ -190,7 +190,7 @@ h6 {
 }
 
 .secondary-btn {
-    padding: 0.7rem 1rem;
+    padding: 0rem 0rem;
     height: 2.7rem;
     display: block;
     border: 1px solid #000;

@@ -10,6 +10,9 @@ const session = require('express-session');
 const passport = require('passport');
 const expressLayouts = require('express-ejs-layouts');
 
+//models
+const article = require('./models/articles');
+
 //Passport Config
 require('./config/passport')(passport);
 
@@ -64,6 +67,34 @@ app.get('*', (req, res, next) => {
 
 //Routes
 app.use('/', require('./routes/index'));
+
+
+app.get('/explore',(req,res)=>{
+    article.find({},(err,articles)=>{
+      if(err){
+        console.log(err);
+      }else{
+        res.render('explore',{
+          articles : articles
+        })
+      }
+    })
+  });
+
+//user single article
+app.get('/explore/:id', (req, res) => {
+  article.findById(req.params.id, (err, article) => {
+      if (err) {
+          console.log(err);
+          return;
+      } else {
+          res.render('user_article', {
+              article: article
+          })
+      }
+  });
+});
+  
 app.use('/users', require('./routes/users'));
 app.use('/technicalUsers', require('./routes/technicalUsers'));
 // app.use('/technical',require('./routes/technical'));

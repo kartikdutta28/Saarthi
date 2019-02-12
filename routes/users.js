@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt  = require('bcryptjs');
 const passport = require('passport');
+const article = require('../models/articles');
 
 //User model
 const User = require('../models/User');
@@ -14,6 +15,37 @@ router.get('/register',(req,res)=>res.render('register'));
 
 //Welcome Page
 router.get('/welcome',(req,res)=>res.render('welcome'));
+
+router.get('/welcome/explore',(req,res)=>{
+  article.find({},(err,articles)=>{
+    if(err){
+      console.log(err);
+    }else{
+      res.render('explore',{
+        articles : articles
+      })
+    }
+  })
+});
+
+router.get('/user_profile',(req,res)=>{
+  res.render('user_profile');     
+});
+
+//user single article
+router.get('/explore/:id', (req, res) => {
+  Article.findById(req.params.id, (err, article) => {
+      if (err) {
+          console.log(err);
+          return;
+      } else {
+          res.render('user_article', {
+              article: article
+          })
+      }
+  });
+});
+
 
 //Register Handle
 router.post('/register', (req, res) => {

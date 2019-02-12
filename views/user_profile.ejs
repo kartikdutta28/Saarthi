@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Sarthi || Writer</title>
+    <title>Sarthi || Reader </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!--linkimg Font-Awesome styles-->
@@ -65,7 +65,8 @@
                 <a href="/users/register"><i class="far fa-address-card"></i> SignUp</a>
              <%  } %> 
             <% if(user){ %>
-                <a href="/technicalUsers/logout"><i class="fas fa-door-open"></i> LogOut</a>
+                <a href="/users/user_profile"><i class="fas fa-user-alt"></i> My Profile</a>
+                <a href="/users/logout"><i class="fas fa-door-open"></i> LogOut</a>
             <%  } %> 
         </div>
     </div>
@@ -79,9 +80,9 @@
 
             <!--the starting of card-->
             <div class="card">
-                <img src="../public/images/jhon_doe.jpg" alt="John" class="resp-img">
-                <h2 class="user-name"><%= user.name %></h2>
-                <p class="user-type">Sarthi Writer</p>
+                <img src="../public/images/jhon_doe_female.jpg" alt="John" class="resp-img">
+                <h2 class="user-name">MI BRUHA</h2>
+                <p class="user-type">Reader</p>
 
                 <!--starting of profile links-->
                 <ul class="profile-links">
@@ -92,13 +93,10 @@
                         <a onclick="on_editprofile()" class="link">Edit Profile</a>
                     </li>
                     <li>
-                        <a onclick="on_myarticles()" class="link">My Articles</a>
+                        <a onclick="on_requestarticles()" class="link">Request Article</a>
                     </li>
                     <li>
-                        <a onclick="on_addarticle()" class="link">Add Articles</a>
-                    </li>
-                    <li>
-                        <a href="/technicalUsers/technicalindex/add_pictures" class="link">Add Pictures</a>
+                        <a onclick="on_donate()" class="link">Donate</a>
                     </li>
                 </ul>
                 <!--ending of profile links-->
@@ -116,11 +114,15 @@
             <div id="my-profile">
                 <div>
                     <p class="label">Name:</p>
-                    <h3 class="l-text"> <%= user.name %> </h3>
+                    <h3 class="l-text">MI BRUHA</h3>
                 </div>
                 <div>
                     <p class="label">Email Id:</p>
-                    <h3 class="l-text"><%= user.email %></h3>
+                    <h3 class="l-text">MI_BRUHA@gmail.com</h3>
+                </div>
+                <div>
+                    <p class="label">User Type:</p>
+                    <h3 class="l-text">Reader</h3>
                 </div>
             </div>
             <!--end of my profile div-->
@@ -137,71 +139,32 @@
             </div>
             <!--ending of edit my profile-->
 
-            <!--starting of my-articles-->
-            <div id="my-articles">
-
-                <!--starting of grid list-->
-                <div class="grid-list">
-                    <div class="grid-item">
-                        <img src="./images/trending-fir.jpg" alt="">
-                        <div class="img-caption">
-                            <a>Edit Article</a>
-                        </div>
-                    </div>
-                    <div class="grid-item">
-                        <img src="./images/trending-metro.jpg" alt="">
-                        <div class="img-caption">
-                            <a>Edit Aticle</a>
-                        </div>
-                    </div>
-                    <div class="grid-item">
-                        <img src="./images/trending-tax.jpg" alt="">
-                        <div class="img-caption">
-                            <a>Edit Article</a>
-                        </div>
-                    </div>
+            <!--starting of request-articles-->
+            <div id="request-articles">
+                <div class="sarthi-form">
+                    <form action="#" method="post">
+                        <label>Email</label>
+                        <input type="email" name="email" placeholder="YOUR EMAIL" class="input-item" required>
+                        <label>Title Name</label>
+                        <textarea name="" id="" cols="30" rows="5" placeholder="ARTICLE DESCRIPTION" class="input-item"
+                            required></textarea>
+                        <button type="submit" class="primary-btn">REQUEST IT</button>
+                    </form>
                 </div>
-                <!--ending of grid list-->
-
             </div>
             <!--ending of my-articles-->
 
 
 
-            <!--Add Articles-->
-            <form method="POST" action="/technicalUsers/technicalindex/add_articles">
-            <div id="add-articles">
-                <div class="sarthi-form">
-                    <label for="title">Article Title</label>
-                    <input type="text" name="title" class="input-item" id="title">
-
-                    <label for="category">Article category</label>
-                    <input type="text" name="category" class="input-item" id="category">
-
-                    <!--starting of steps-->
-                    <h3><b>Article Steps<b></h3>
-                    <div class="step-form">
-                        <div class="optionBox">
-                            <div class="block">
-                                <label for="steptitle">Step Title</label>
-                                <input type="text" name="steptitle" class="input-item" id="steptitle">
-
-                                <label for="step">Step Description</label>
-                                <textarea name="step" id="" cols="30" rows="10" class="input-item" id="step"></textarea><span class="secondary-btn remove">Remove Step</span>
-                            </div>
-
-                            <div class="block">
-                                <span class="secondary-btn add">Add Step</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!--ending of steps-->
-                    <input type="hidden" id="author" name="author" value="<%= user.id %>">
-                    <button type="submit" class="primary-btn" id="btn">Add</button>
+            <!--Donate Button-->
+            <div id="donate-section">
+                <h2 class="user-name">Love OUR COMMUNITY?
+                    <small class="user-type">Support By Donating Us</small>
+                </h2>
+                <div class="donate-container">
+                    <h3 class="donate-logo"><i class="fas fa-rupee-sign"></i></h3><button type="submit" class="donate-button">DONATE</button>
                 </div>
-
             </div>
-            </form>
             <!--End of Add Articles-->
 
 
@@ -230,9 +193,7 @@
         </div>
     </div>
     <!--end of footer-->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
-    <script src="../../public/js/add_article/add_article.js"></script>
+
     <script src="../public/js/my_profile.js"></script>
 </body>
 
