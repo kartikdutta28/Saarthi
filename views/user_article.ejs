@@ -76,7 +76,7 @@
             <h3 class="article-category">article-categoty: <%=  article.Category %></h3>
             <!--starting of step-->
 
-            <% console.log(article.Body); %>
+            
             <% for(let i = 0 ; i < article.Body.length ; i++){  %>   
                 <div class="step">
                     <div class="step-title">
@@ -89,7 +89,7 @@
                         </h2>
                     </div>
                     <div class="step-img">
-                        <img class="aimg-resp" src="./images/demo-article-img.jpg" alt="">
+                        <img class="aimg-resp" src="../public/images/<%=article.id+j%>.jpg" alt="">
                     </div>
                     <div class="step-description">
                         <b><%= article.Body[i] %></b>
