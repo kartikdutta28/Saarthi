@@ -27,21 +27,6 @@ router.get('/technicalindex',ensureAuthenticated,(req,res)=>{
 });
 
 
-//get single article
-router.get('/technicalindex/:id', (req, res) => {
-    Article.findById(req.params.id, (err, article) => {
-        if (err) {
-            console.log(err);
-            return;
-        } else {
-            res.render('article', {
-                title: 'articles',
-                article: article
-            })
-        }
-    });
-});
-
 
 //edit article
 router.get('/technicalindex/edit/:id', (req, res) => {
@@ -208,5 +193,19 @@ router.post('/technicalindex/add_pictures', (req, res) => {
     });
 });
   
+//get single article
+router.get('/technicalindex/:id', (req, res) => {
+    Article.findById(req.params.id, (err, article) => {
+        if (err) {
+            console.log(err);
+            return;
+        } else {
+            res.render('article', {
+                title: 'articles',
+                article: article
+            })
+        }
+    });
+});
 
 module.exports = router;
