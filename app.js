@@ -9,6 +9,7 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
 const expressLayouts = require('express-ejs-layouts');
+const Request = require('./models/Request');
 
 //models
 const article = require('./models/articles');
@@ -80,7 +81,21 @@ app.get('/explore',(req,res)=>{
       }
     })
   });
-
+  app.post('/explore',(req,res)=>{
+    const newRequest=new Request();
+    newRequest.title=req.body.RequestTitle;
+    newRequest.email=req.body.RequestEmail;
+    newRequest.save(function(err){
+      if(err){
+        console.log(err);
+      }
+      else{
+        res.redirect('/explore');
+      }
+    });
+  
+  });
+  
 //user single article
 app.get('/explore/:id', (req, res) => {
   article.findById(req.params.id, (err, article) => {
@@ -97,8 +112,6 @@ app.get('/explore/:id', (req, res) => {
   
 app.use('/users', require('./routes/users'));
 app.use('/technicalUsers', require('./routes/technicalUsers'));
-// app.use('/technical',require('./routes/technical'));
-// app.use('/admin',require('./routes/admin'));
 
 //Listen to port 5000
 app.listen(PORT, () => {

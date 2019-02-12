@@ -1,11 +1,3 @@
-<h1>EXPLORE PAGE</h1>
-
-<ul class="list-group">
-        <% for(let article of articles) {%>
-            <li class="list-group-item"><a href="/<%= article._id %>" ><%= article.title%></a></li>
-        <% } %>
-</ul>
-
 <!DOCTYPE html>
 <html>
 
@@ -254,11 +246,11 @@
                 <small class="section-subheading">Request An Article</small>
             </h2>
             <div class="sarthi-form">
-                <form action="#" method="post">
+                <form action="/explore" method="post">
                     <label>Email</label>
-                    <input type="email" name="email" placeholder="YOUR EMAIL" class="input-item" required>
+                    <input type="email" name="RequestEmail" placeholder="YOUR EMAIL" class="input-item" required>
                     <label>Title Name</label>
-                    <textarea name="" id="" cols="30" rows="5" placeholder="ARTICLE DESCRIPTION" class="input-item"
+                    <textarea name="RequestTitle" id="" cols="30" rows="5" placeholder="ARTICLE DESCRIPTION" class="input-item"
                         required></textarea>
                     <button type="submit" class="primary-btn">REQUEST IT</button>
                 </form>

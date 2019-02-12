@@ -72,7 +72,7 @@
         <!--starting of article section-->
         <div id="article-section">
             <h1 class="article-title"><%= article.title%></h1>
-            <h3 class="article-author">Author: <%= article.Author %></h3>
+            <h3 class="article-author">Author <%= article.Author%></h3>
             <h3 class="article-category">article-categoty: <%=  article.Category %></h3>
             <!--starting of step-->
 
@@ -129,38 +129,9 @@
             <!--end of rating container-->
 
             <!--starting of change language container-->
-            <div id="language-container">
-                <h2 class="sub-title">Change Language</h2>
-                <div class="sarthi-form">
-                    <form action="post">
-                        <label class="radio-container">English
-                            <input type="radio" name="language" checked="checked">
-                            <span class="checkmark"></span>
-                        </label>
-                        <label class="radio-container">Hindi
-                            <input type="radio" name="language">
-                            <span class="checkmark"></span>
-                        </label>
-                        <button type="submit" class="primary-btn">Change Languge</button>
-                    </form>
-                </div>
-            </div>
             <!--end of change languge container-->
 
             <!--starting of request-container-->
-            <div id="request-container">
-                <h2 class="sub-title">REQUEST ARTICLE</h2>
-                <div class="sarthi-form">
-                    <form action="#" method="post">
-                        <label>Email</label>
-                        <input type="email" name="email" placeholder="YOUR EMAIL" class="input-item" required>
-                        <label>Title Name</label>
-                        <textarea name="" id="" cols="30" rows="5" placeholder="ARTICLE DESCRIPTION" class="input-item"
-                            required></textarea>
-                        <button type="submit" class="primary-btn">REQUEST IT</button>
-                    </form>
-                </div>
-            </div>
             <!--end of request container-->
         </div>
         <!--end of side section--->
