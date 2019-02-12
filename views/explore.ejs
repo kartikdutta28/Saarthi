@@ -132,7 +132,7 @@
                 <% for(let article of articles) {%>
                     <div class="article-banner">
                         <div class="article-banner-img">
-                            <img src="../public/images/passport.jpg" alt="">
+                            <img src="../public/uploads/<%=article.id+1%>.jpg" alt="">
                         </div>
                         <div class="article-banner-content">
                             <h3> <a href="/explore/<%= article._id %>" > <%= article.title %> </a> </h3>
