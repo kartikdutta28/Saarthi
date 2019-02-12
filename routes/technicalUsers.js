@@ -110,13 +110,13 @@ router.post('/technicalindex/add_articles', (req, res) => {
             console.log(err);
         }else{
             authorname = author.name; 
-            console.log(authorname);
+            // console.log(authorname);
         }
     });
-    console.log('aurthorname: '+authorname);
+    // console.log('aurthorname: '+authorname);
     // authorname = authorname.toString();
     article.Author = authorname;
-    console.log('name: '+article.Author);
+    // console.log('name: '+article.Author);
     // article.Author = authorname.toString();
     // eval(require('locus'));
     article.steptitiles = req.body.steptitle;
