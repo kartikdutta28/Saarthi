@@ -139,32 +139,23 @@
 
             <!--starting of my-articles-->
             <div id="my-articles">
-
-                <!--starting of grid list-->
-                <div class="grid-list">
-                    <div class="grid-item">
-                        <img src="./images/trending-fir.jpg" alt="">
-                        <div class="img-caption">
-                            <a>Edit Article</a>
-                        </div>
-                    </div>
-                    <div class="grid-item">
-                        <img src="./images/trending-metro.jpg" alt="">
-                        <div class="img-caption">
-                            <a>Edit Aticle</a>
-                        </div>
-                    </div>
-                    <div class="grid-item">
-                        <img src="./images/trending-tax.jpg" alt="">
-                        <div class="img-caption">
-                            <a>Edit Article</a>
-                        </div>
-                    </div>
-                </div>
-                <!--ending of grid list-->
-
+                <% articles.forEach((article,index)=>{ %>
+                        <% if(article.Author == user.name){ %>
+                        <a><%let j = index+1 %> <%= j %><%= article.title %></a>
+                            <div class="grid-list">
+                                <div class="grid-item">
+                                    <img src="./images/trending-fir.jpg" alt="">
+                                    <div class="img-caption">
+                                        <a><%= article.title %></a>
+                                    </div>
+                                </div>
+                            </div>
+                        <% }%>
+                <% }); %>
             </div>
-            <!--ending of my-articles-->
+            
+            <!-- starting of my-articles-->
+            
 
 
 
