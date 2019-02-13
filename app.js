@@ -9,7 +9,7 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
 const expressLayouts = require('express-ejs-layouts');
-const Request = require('./models/Request');
+
 
 //models
 const article = require('./models/articles');
@@ -69,47 +69,18 @@ app.get('*', (req, res, next) => {
 //Routes
 app.use('/', require('./routes/index'));
 
-
 app.get('/explore',(req,res)=>{
-    article.find({},(err,articles)=>{
-      if(err){
-        console.log(err);
-      }else{
-        res.render('explore',{
-          articles : articles
-        })
-      }
-    })
-  });
-  app.post('/explore',(req,res)=>{
-    const newRequest=new Request();
-    newRequest.title=req.body.RequestTitle;
-    newRequest.email=req.body.RequestEmail;
-    newRequest.save(function(err){
-      if(err){
-        console.log(err);
-      }
-      else{
-        res.redirect('/explore');
-      }
-    });
-  
-  });
-  
-//user single article
-app.get('/explore/:id', (req, res) => {
-  article.findById(req.params.id, (err, article) => {
-      if (err) {
-          console.log(err);
-          return;
-      } else {
-          res.render('user_article', {
-              article: article
-          })
-      }
-  });
+  article.find({},(err,articles)=>{
+    if(err){
+      console.log(err);
+    }else{
+      res.render('explore',{
+        articles : articles
+      })
+    }
+  })
 });
-  
+
 app.use('/users', require('./routes/users'));
 app.use('/technicalUsers', require('./routes/technicalUsers'));
 
