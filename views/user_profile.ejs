@@ -114,11 +114,11 @@
             <div id="my-profile">
                 <div>
                     <p class="label">Name:</p>
-                    <h3 class="l-text">MI BRUHA</h3>
+                    <h3 class="l-text"><%= user.name%></h3>
                 </div>
                 <div>
                     <p class="label">Email Id:</p>
-                    <h3 class="l-text">MI_BRUHA@gmail.com</h3>
+                    <h3 class="l-text"><%= user.email%></h3>
                 </div>
                 <div>
                     <p class="label">User Type:</p>
@@ -131,9 +131,9 @@
             <div id="edit-profile">
                 <div class="sarthi-form">
                     <label>Name</label>
-                    <input type="text" name="name" class="input-item">
+                    <input type="text" name="name" class="input-item" placeholder="<%= user.name%>">
                     <label>Email Id:</label>
-                    <input type="email" name="email" class="input-item">
+                    <input type="email" name="email" class="input-item" placeholder="<%= user.email%>">
                     <button type="submit" class="primary-btn">Update Profile</button>
                 </div>
             </div>
