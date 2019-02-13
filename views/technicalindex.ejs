@@ -141,7 +141,7 @@
             <div id="my-articles">
                 <% articles.forEach((article,index)=>{ %>
                         <% if(article.Author == user.name){ %>
-                        <a><%let j = index+1 %> <%= j %><%= article.title %></a>
+                        <a><%let j = index+1 %>Article No -<%= j %> <%= article.title %></a>
                             <div class="grid-list">
                                 <div class="grid-item">
                                     <img src="./images/trending-fir.jpg" alt="">

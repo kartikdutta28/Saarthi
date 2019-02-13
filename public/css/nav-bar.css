@@ -56,6 +56,9 @@ body {
   display: none;
 }
 
+.nav .nav-links form{
+display: inline;
+}
 .nav > .nav-links .search {
   display:inline-block;
   margin-top:5px;
