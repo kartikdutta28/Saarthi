@@ -15,7 +15,6 @@
 
     <!--linkimg nav-bar style sheet-->
     <link rel="stylesheet" type="text/css" media="screen" href="../public/css/nav-bar.css" />
-
     <!--linkimg nav-bar style sheet-->
     <link rel="stylesheet" type="text/css" media="screen" href="../public/css/sarthi-explorer.css" />
 
@@ -137,6 +136,13 @@
                         <div class="article-banner-content">
                             <h3> <a href="/explore/<%= article._id %>" > <%= article.title %> </a> </h3>
                         </div>
+                    </div>
+                    <div class="row">
+                        <button onclick="actOnPost(event);"
+                                data-post-id="<%= article.id%>">Like
+                    </button>
+                        <span id="likes-count-<%= article.id%>"><%=article.Likes %></span>
+                        
                     </div>
                  <% } %>              
         </div>
@@ -292,9 +298,12 @@
         </div>
     </div>
     <!--end of footer-->
-
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="../public/js/main.js"></script>
+    <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
     <script src="../public/js/trending-slider.js"></script>
     <script src="../public/js/fresh-slider.js"></script>
+    
 </body>
 
 </html>

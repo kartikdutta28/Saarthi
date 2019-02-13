@@ -10,8 +10,9 @@ const session = require('express-session');
 const passport = require('passport');
 const expressLayouts = require('express-ejs-layouts');
 const Request = require('./models/Request');
+let Pusher = require('pusher');
 
-//models
+//Models
 const article = require('./models/articles');
 
 //Passport Config
@@ -61,6 +62,7 @@ app.use((req, res, next) => {
     next();
 });
 
+//Get the user through out the website
 app.get('*', (req, res, next) => {
     res.locals.user = req.user || null;
     next();
@@ -69,7 +71,7 @@ app.get('*', (req, res, next) => {
 //Routes
 app.use('/', require('./routes/index'));
 
-
+//Explore route for a user who is not logged in
 app.get('/explore',(req,res)=>{
     article.find({},(err,articles)=>{
       if(err){
@@ -81,6 +83,7 @@ app.get('/explore',(req,res)=>{
       }
     })
   });
+  //POST route for request an article 
   app.post('/explore',(req,res)=>{
     const newRequest=new Request();
     newRequest.title=req.body.RequestTitle;
@@ -96,7 +99,7 @@ app.get('/explore',(req,res)=>{
   
   });
   
-//user single article
+//GET route for user single article
 app.get('/explore/:id', (req, res) => {
   article.findById(req.params.id, (err, article) => {
       if (err) {
@@ -110,6 +113,21 @@ app.get('/explore/:id', (req, res) => {
   });
 });
   
+let pusher = new Pusher({
+  appId: '713073',
+  key: '1c85b3a5edd16467f014',
+  secret: 'a6ea4e5a7b60154582f7',
+  cluster: 'ap2'
+});
+
+app.post('/posts/:id/act', (req, res, next) => {
+    const action = req.body.action;
+    const counter = action === 'Like' ? 1 : -1;
+    article.update({_id: req.params.id}, {$inc: {Likes: counter}}, {}, (err, numberAffected) => {
+        pusher.trigger('post-events', 'postAction', { action: action, postId: req.params.id }, req.body.socketId);
+        res.send('');
+    });
+});
 app.use('/users', require('./routes/users'));
 app.use('/technicalUsers', require('./routes/technicalUsers'));
 
