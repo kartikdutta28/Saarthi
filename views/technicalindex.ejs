@@ -144,16 +144,12 @@
             <!--starting of my-articles-->
             <div id="my-articles">
                 <% articles.forEach((article,index)=>{ %>
-                        <% if(article.Author == user.name){ %>
-                        <a><%let j = index+1 %>Article No -<%= j %> <a href="#"><%= article.title %></a></a>
-                            <div class="grid-list">
-                                <div class="grid-item">
-                                    <img src="./images/trending-fir.jpg" alt="">
-                                    <div class="img-caption">
-                                        <a><%= article.title %></a>
-                                    </div>
-                                </div>
-                            </div>
+                        <% if(article.Author == user.name){ console.log('insidemyarticles'+ user.name) %>
+                        <div class="article-card">
+                            <h3><a><%let j = index+1 %>Article No -<%= j %> <a href="/explore/<%= article._id %>"><%= article.title %></a></a></h3>
+                            <button type="submit" class="secondary-btn"><a href="/technicalUsers/technicalindex/edit/<%= article._id %>">Edit Article</a></button>
+                            <button type="submit" class="secondary-btn"><a href="/technicalUsers/technicalindex/delete/<%= article._id %>">Delete Article</a></button>
+                        </div>
                         <% }%>
                 <% }); %>
             </div>
@@ -199,7 +195,6 @@
             </div>
             </form>
             <!--End of Add Articles-->
-
 
         </div>
         <!--ending of description card-->

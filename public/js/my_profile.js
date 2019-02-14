@@ -38,4 +38,5 @@ function on_myprofile() {
     document.getElementById("edit-profile").style.display = "none";
     document.getElementById("request-articles").style.display = "none";
     document.getElementById("donate-section").style.display = "block";
+
   }

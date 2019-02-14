@@ -80,6 +80,7 @@ router.get('/technicalindex/delete/:id',ensureAuthenticated, (req, res) => {
             console.log(err);
 
         }else{
+            req.flash('success', 'article deleted');
             res.redirect('/technicalUsers/technicalindex');
         // res.send('success');
         }
