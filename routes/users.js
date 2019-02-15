@@ -7,7 +7,7 @@ const Request = require('../models/Request');
 const User = require('../models/User');
 const TechnicalUser = require('../models/TechnicalUser');
 
-router.get('welcome/explore',(req,res)=>{
+router.get('/welcome/explore',(req,res)=>{
   article.find({},(err,articles)=>{
     if(err){
       console.log(err);
