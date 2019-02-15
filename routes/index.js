@@ -2,7 +2,9 @@ const express = require('express');
 const router = express.Router();
 const {ensureAuthenticated}=require('../config/auth');
 const article = require('../models/articles');
+const Request = require('../models/Request');
 router.get('/',(req,res)=>res.render('welcome'));
+
 
 
 router.get('/dashboard',ensureAuthenticated,(req,res)=>
@@ -39,6 +41,37 @@ router.get('/search_articles',(req,res)=>{
         });
     }
 });
+
+
+router.post('/explore',(req,res)=>{
+    const newRequest=new Request();
+    newRequest.title=req.body.RequestTitle;
+    newRequest.email=req.body.RequestEmail;
+    newRequest.save(function(err){
+      if(err){
+        console.log(err);
+      }
+      else{
+        res.redirect('/explore');
+      }
+    });
+  
+  });
+  
+//user single article
+router.get('/explore/:id', (req, res) => {
+  article.findById(req.params.id, (err, article) => {
+      if (err) {
+          console.log(err);
+          return;
+      } else {
+          res.render('user_article', {
+              article: article
+          })
+      }
+  });
+});
+  
 
 function escapeRegex(text) {
     return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");

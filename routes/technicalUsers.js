@@ -31,7 +31,7 @@ router.get('/technicalindex',ensureAuthenticated,(req,res)=>{
 });
 
 //edit article
-router.get('/technicalindex/edit/:id', (req, res) => {
+router.get('/technicalindex/edit/:id',ensureAuthenticated, (req, res) => {
     Article.findById(req.params.id, (err, article) => {
         if (err) {
             console.log(err);
@@ -46,8 +46,8 @@ router.get('/technicalindex/edit/:id', (req, res) => {
 });
 
 
-//update post route
-router.post('/technicalindex/edit/:id', (req, res) => {
+//update article post route
+router.post('/technicalindex/edit/:id',ensureAuthenticated, (req, res) => {
     let article = {};
     article.title = req.body.title;
     article.Category = req.body.category;
@@ -70,7 +70,7 @@ router.post('/technicalindex/edit/:id', (req, res) => {
 
 
 //delete an article
-router.get('/technicalindex/delete/:id', (req, res) => {
+router.get('/technicalindex/delete/:id',ensureAuthenticated, (req, res) => {
     let query = {
         _id: req.params.id
     }
@@ -80,6 +80,7 @@ router.get('/technicalindex/delete/:id', (req, res) => {
             console.log(err);
 
         }else{
+            req.flash('success', 'article deleted');
             res.redirect('/technicalUsers/technicalindex');
         // res.send('success');
         }
@@ -89,16 +90,16 @@ router.get('/technicalindex/delete/:id', (req, res) => {
 
 
 
-router.get('/technicalindex/add_articles',(req,res)=>{   
-    res.render('add_articles', {
-        title: 'Add Article'
-    });
-});
+// router.get('/technicalindex/add_articles',ensureAuthenticated,(req,res)=>{   
+//     res.render('add_articles', {
+//         title: 'Add Article'
+//     });
+// });
 
 
 
 let authorname;
-// add post route
+// add article post route
 router.post('/technicalindex/add_articles', (req, res) => {
     // res.send('OK');
     // console.log('inside post route');
@@ -138,6 +139,40 @@ router.post('/technicalindex/add_articles', (req, res) => {
     
 });
 
+//update profile post route
+router.post('/technicalindex/updateprofile',ensureAuthenticated,(req,res)=>{
+    let name = req.body.name;
+    let email = req.body.email;
+    if(name == "" && email == ""){
+        req.flash('error_msg','please fill the values to update your profile');
+    }else if(name != "" && email == ""){
+        TechnicalUser.findOneAndUpdate({_id:req.body.author},{$set: {name: name}},{upsert: true},(err,author)=>{
+            if(err){
+                console.log(err);
+            }else{
+                req.flash('success_msg','profile updated')  ; 
+            }
+        });
+    }else if(name == "" && email != ""){
+        TechnicalUser.findOneAndUpdate({_id:req.body.author},{$set: {email: email}},{upsert: true},(err,author)=>{
+            if(err){
+                console.log(err);
+            }else{
+                req.flash('success_msg','profile updated')  ; 
+            }
+        });
+    }else if(name != "" && email != ""){
+        TechnicalUser.findOneAndUpdate({_id:req.body.author},{$set: {name: name,email: email}},{upsert: true},(err,author)=>{
+            if(err){
+                console.log(err);
+            }else{
+                req.flash('success_msg','profile updated')  ; 
+            }
+        });
+    }
+    res.redirect('/technicalUsers/technicalindex');
+});
+
 
 router.post('/login',(req,res,next)=>{
     passport.authenticate('technical-local',{
@@ -154,7 +189,7 @@ router.get('/logout', (req, res) => {
 });
 
 
-router.get('/technicalindex/add_pictures',(req,res)=>{
+router.get('/technicalindex/add_pictures',ensureAuthenticated,(req,res)=>{
     res.render('upload_pictures');
 });
 

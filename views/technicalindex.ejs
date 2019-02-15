@@ -1,3 +1,4 @@
+<% include ./partials/messages %>
 <!DOCTYPE html>
 <html>
 
@@ -128,11 +129,14 @@
             <!--starting of my edit my profile-->
             <div id="edit-profile">
                 <div class="sarthi-form">
-                    <label>Name</label>
-                    <input type="text" name="name" class="input-item">
-                    <label>Email Id:</label>
-                    <input type="email" name="email" class="input-item">
-                    <button type="submit" class="primary-btn">Update Profile</button>
+                    <form method="POST" action="/technicalUsers/technicalindex/updateprofile">
+                        <label>Name</label>
+                        <input type="text" name="name" class="input-item" placeholder="<%= user.name%>">
+                        <label>Email Id:</label>
+                        <input type="email" name="email" class="input-item"  placeholder="<%= user.email%>">
+                        <input type="hidden" id="author" name="author" value="<%= user.id %>">
+                        <button type="submit" class="primary-btn">Update Profile</button>
+                    </form>
                 </div>
             </div>
             <!--ending of edit my profile-->
@@ -140,16 +144,12 @@
             <!--starting of my-articles-->
             <div id="my-articles">
                 <% articles.forEach((article,index)=>{ %>
-                        <% if(article.Author == user.name){ %>
-                        <a><%let j = index+1 %>Article No -<%= j %> <%= article.title %></a>
-                            <div class="grid-list">
-                                <div class="grid-item">
-                                    <img src="./images/trending-fir.jpg" alt="">
-                                    <div class="img-caption">
-                                        <a><%= article.title %></a>
-                                    </div>
-                                </div>
-                            </div>
+                        <% if(article.Author == user.name){ console.log('insidemyarticles'+ user.name) %>
+                        <div class="article-card">
+                            <h3><a><%let j = index+1 %>Article No -<%= j %> <a href="/explore/<%= article._id %>"><%= article.title %></a></a></h3>
+                            <button type="submit" class="secondary-btn"><a href="/technicalUsers/technicalindex/edit/<%= article._id %>">Edit Article</a></button>
+                            <button type="submit" class="secondary-btn"><a href="/technicalUsers/technicalindex/delete/<%= article._id %>">Delete Article</a></button>
+                        </div>
                         <% }%>
                 <% }); %>
             </div>
@@ -195,7 +195,6 @@
             </div>
             </form>
             <!--End of Add Articles-->
-
 
         </div>
         <!--ending of description card-->
