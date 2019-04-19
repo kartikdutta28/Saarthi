@@ -1,11 +1,5 @@
 const mongoose =require('mongoose');
 
-//Body schema for each article
-// let Steps = mongoose.Schema({
-//        type: String
-// });
-
-
 
 //User SCHEMA
 const ArticleSchema = mongoose.Schema({
